@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:background="@drawable/discover_about_img"
+    android:gravity="center"
+    tools:context=".fragments.about.AboutUpperSocialInfoFragment">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.nex3z.flowlayout.FlowLayout
+            android:id="@+id/chipsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="25dp">
+
+        </com.nex3z.flowlayout.FlowLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/nodataFoundMessageBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="15dp"
+            android:backgroundTint="#FFF"
+            android:text="No social followings data available"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            app:cornerRadius="10dp"
+            app:iconGravity="start"
+            app:iconSize="15dp"
+            app:iconTint="#000"></com.google.android.material.button.MaterialButton>
+    </RelativeLayout>
+</LinearLayout>

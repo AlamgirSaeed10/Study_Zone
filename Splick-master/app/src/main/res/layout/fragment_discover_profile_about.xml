@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".fragments.discover.profile.DiscoverProfileAboutFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="25dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About"
+            android:textAppearance="?attr/textAppearanceHeadline4">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/businessProfileAboutBio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:text="Biography" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="50dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/discoverProfileMsssageBtn"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="54dp"
+                android:backgroundTint="#000"
+                android:textStyle="bold"
+                android:text="Message"
+                android:textColor="#FFF"
+                android:textAllCaps="true"></Button>
+
+
+            <Button
+                android:id="@+id/discoverProfileFollowBtn"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#000"
+                android:textStyle="bold"
+                android:text="Follow"
+                android:textColor="#FFF"
+                android:textAllCaps="true">
+
+            </Button>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

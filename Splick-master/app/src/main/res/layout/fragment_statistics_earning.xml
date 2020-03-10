@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.earnings.StatisticsEarningFragment">
+
+<!--
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPagerPartnershipDetailsStatistics"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            app:tabIndicatorColor="@color/black"
+            style="@style/Widget.Design.TabLayout"
+            app:tabGravity="center"
+            app:tabTextAppearance="?attr/textAppearanceSubtitle1"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="?actionBarSize"
+                android:text="1D"/>
+
+            <com.google.android.material.tabs.TabItem
+                android:text="1W"
+                android:layout_width="wrap_content"
+                android:layout_height="?actionBarSize" />
+
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="?actionBarSize"
+                android:text="1M"/>
+
+            <com.google.android.material.tabs.TabItem
+                android:text="6M"
+                android:layout_width="wrap_content"
+                android:layout_height="?actionBarSize" />
+
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="?actionBarSize"
+                android:text="1Y"/>
+
+        </com.google.android.material.tabs.TabLayout>
+    </androidx.viewpager.widget.ViewPager>
+-->
+</FrameLayout>
