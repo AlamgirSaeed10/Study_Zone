@@ -10,6 +10,7 @@ import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -56,7 +57,6 @@ public class DashBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dash_board);
         ButterKnife.bind(this);
         dashboardActvityContext = this;
-
         sharedPreferenceClass = SharedPreferenceClass.getInstance(getApplicationContext());
         Constants.jsonObject = sharedPreferenceClass.getValues(Constants.USER_JSON_OBJECT);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.bottomNavDashboard);
