@@ -79,4 +79,10 @@
     <string name="test_String2">Creating a Button Selector (which changes colour on press) with Rounded Corners. Create an xml rounded_button_selector.xml in the Drawable Folder. Paste the below code and apply it as the Button Background.</string>
     <string name="filter">Filter</string>
 
+    <string name="_1d">1D</string>
+    <string name="_1w">1W</string>
+    <string name="_1m">1M</string>
+    <string name="_6m">6M</string>
+    <string name="_1Y">1Y</string>
+
 </resources>
