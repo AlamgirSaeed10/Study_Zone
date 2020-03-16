@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.acuity.Splick.R;
 import com.acuity.Splick.models.Register;
+import com.acuity.Splick.util.Constant;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,7 +62,7 @@ public class Sign_Up_Bio_Fragment extends Fragment {
         // TODO: Use the ViewModel
         btnNext.setOnClickListener(v -> {
             HashMap<String,Object> userUpdate=new HashMap<>();
-            userUpdate.put("user_id","135");
+            userUpdate.put("user_id", Constant.USER_ID);
             userUpdate.put("user_bio",bio_etd);
             //Todo: integrate progress bar
             mViewModel.updateUser(userUpdate);
