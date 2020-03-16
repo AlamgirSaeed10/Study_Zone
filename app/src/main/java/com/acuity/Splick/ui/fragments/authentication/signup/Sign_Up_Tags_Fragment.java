@@ -37,7 +37,6 @@ public class Sign_Up_Tags_Fragment extends Fragment {
     ImageView imBack;
     @BindView(R.id.skip_tag_tv)
     TextView tvSkip;
-
     @BindView(R.id.chipGroup)
     ChipGroup tags_list;
 

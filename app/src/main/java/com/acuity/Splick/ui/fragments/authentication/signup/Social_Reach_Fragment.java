@@ -1,10 +1,10 @@
 package com.acuity.Splick.ui.fragments.authentication.signup;
 
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,6 +23,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.acuity.Splick.R;
+import com.acuity.Splick.models.Register;
+import com.acuity.Splick.util.Constant;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,10 +49,11 @@ public class Social_Reach_Fragment extends Fragment {
     TextView connect_to_youtube;
     @BindView(R.id.connect_to_snapchat)
     TextView connect_to_snapchat;
+    HashMap<String,Object> userSocialConnection=new HashMap<>();
 
     String insta_link;
 
-    private SocialReachViewModel mViewModel;
+    private SignUpInfoFragmentViewModel mViewModel;
 
     public static Social_Reach_Fragment newInstance() {
         return new Social_Reach_Fragment();
@@ -65,10 +70,24 @@ public class Social_Reach_Fragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(SocialReachViewModel.class);
+        mViewModel=new ViewModelProvider(getActivity()).get(SignUpInfoFragmentViewModel.class);
+
         // TODO: Use the ViewModel
         btnNext.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.action_social_Reach_Fragment_to_add_Portfolio_Fragment);
+            userSocialConnection.put("user_id", Constant.USER_ID);
+            mViewModel.updateUser(userSocialConnection);
+            mViewModel.updateUserLiveData.observe(getViewLifecycleOwner(), new Observer<Register>() {
+                @Override
+                public void onChanged(Register register) {
+                    if(register.getSuccess()){
+                        Navigation.findNavController(v).navigate(R.id.action_social_Reach_Fragment_to_add_Portfolio_Fragment);
+                    }
+                    else {
+                        Toast.makeText(getActivity(), "Error Occurred", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
         });
         tvSkip.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_social_Reach_Fragment_to_add_Portfolio_Fragment);
@@ -77,8 +96,8 @@ public class Social_Reach_Fragment extends Fragment {
             Navigation.findNavController(v).navigate(R.id.action_social_Reach_Fragment_to_sign_Up_Bio_Fragment);
         });
 
-        connect_to_insta.setOnClickListener(v-> getInstaFollowers());
-        connect_to_fb.setOnClickListener(v-> getFbFollowers());
+        connect_to_insta.setOnClickListener(v-> getInstaName());
+        connect_to_fb.setOnClickListener(v-> getFbName());
         connect_to_twitter.setOnClickListener(v-> getTwitterFollowers());
         connect_to_youtube.setOnClickListener(v-> getYoutubeFollowers());
         connect_to_snapchat.setOnClickListener(v-> getSnapchatFollowers());
@@ -86,13 +105,13 @@ public class Social_Reach_Fragment extends Fragment {
     }
 
     @SuppressLint("ResourceAsColor")
-    public void getInstaFollowers() {
+    public void getInstaName() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
         alertDialog.setTitle("Instagram");
         alertDialog.setIcon(R.drawable.insta);
 
         final EditText input = new EditText(getActivity());
-        input.setHint("Enter Number followers.");
+        input.setHint("Enter Instagram name/user ID");
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
@@ -113,13 +132,13 @@ public class Social_Reach_Fragment extends Fragment {
         alertDialog.show();
     }
     @SuppressLint("ResourceAsColor")
-    public void getFbFollowers() {
+    public void getFbName() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
         alertDialog.setTitle("Facebook");
         alertDialog.setIcon(R.drawable.facebook);
 
         final EditText input = new EditText(getActivity());
-        input.setHint("Enter Number followers.");
+        input.setHint("Enter facebook name/user ID");
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
@@ -134,6 +153,7 @@ public class Social_Reach_Fragment extends Fragment {
                     } else {
                         connect_to_fb.setText(""+insta_link);
                         connect_to_fb.setTextColor(R.color.black);
+                        userSocialConnection.put("fab_username",insta_link);
                     }
                     });
 
@@ -146,7 +166,7 @@ public class Social_Reach_Fragment extends Fragment {
         alertDialog.setIcon(R.drawable.youtube);
 
         final EditText input = new EditText(getActivity());
-        input.setHint("Enter Number followers.");
+        input.setHint("Enter youtube name/user ID");
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
@@ -161,6 +181,7 @@ public class Social_Reach_Fragment extends Fragment {
                     } else {
                         connect_to_youtube.setText(""+insta_link);
                         connect_to_youtube.setTextColor(R.color.black);
+                        userSocialConnection.put("youtube_username",insta_link);
                     }
                     });
 
@@ -173,7 +194,7 @@ public class Social_Reach_Fragment extends Fragment {
         alertDialog.setIcon(R.drawable.twitter);
 
         final EditText input = new EditText(getActivity());
-        input.setHint("Enter Number followers.");
+        input.setHint("Enter Twitter name/user ID");
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
@@ -188,6 +209,7 @@ public class Social_Reach_Fragment extends Fragment {
                     } else {
                         connect_to_twitter.setText(""+insta_link);
                         connect_to_twitter.setTextColor(R.color.black);
+                        userSocialConnection.put("twitter_username",insta_link);
                     }
                     });
 
@@ -200,7 +222,7 @@ public class Social_Reach_Fragment extends Fragment {
         alertDialog.setIcon(R.drawable.snapchat);
 
         final EditText input = new EditText(getActivity());
-        input.setHint("Enter Number followers.");
+        input.setHint("Enter SnapChat name/user ID.");
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
@@ -215,6 +237,7 @@ public class Social_Reach_Fragment extends Fragment {
                     } else {
                         connect_to_snapchat.setText(""+insta_link);
                         connect_to_snapchat.setTextColor(R.color.black);
+                        userSocialConnection.put("snapchat_username",insta_link);
                     }
                     });
 
