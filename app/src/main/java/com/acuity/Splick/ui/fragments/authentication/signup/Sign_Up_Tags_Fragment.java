@@ -1,8 +1,6 @@
 package com.acuity.Splick.ui.fragments.authentication.signup;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 
@@ -17,18 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.acuity.Splick.R;
-import com.acuity.Splick.apiConfiguration.ApiInterfaces.ApiInterface;
-import com.acuity.Splick.models.Tag;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,7 +30,7 @@ import butterknife.ButterKnife;
 public class Sign_Up_Tags_Fragment extends Fragment {
     private static final String TAG = "Sign_Up_Tags_Fragment";
     private SignUpInfoFragmentViewModel mViewModel;
-    private static ArrayList<Tag.Data> chipList=new ArrayList<>();
+    private static ArrayList<String> chipList=new ArrayList<String>();
     @BindView(R.id.sign_up_tags_next_btn)
     Button btnNext;
     @BindView(R.id.back_image)
@@ -67,13 +61,21 @@ public class Sign_Up_Tags_Fragment extends Fragment {
         mViewModel.getTagMutableLiveData().observe(getViewLifecycleOwner(),tag -> {
             if (tag.isSuccess()==true)
             {
+                //todo: Success connection but Tag refactor  problem
                 Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
             }
             else {
-
+                Toast.makeText(getActivity(), "Error occur", Toast.LENGTH_SHORT).show();
             }
         });
-
+        //Todo:change after server return data
+     chipList.add("Business");
+     chipList.add("sports");
+     chipList.add("clothing");
+     chipList.add("etc");
+     for (String s:chipList){
+         addChip(s);
+     }
 
         tags_list.setOnCheckedChangeListener((chipGroup, i) -> {
            Chip chip=chipGroup.findViewById(i);
