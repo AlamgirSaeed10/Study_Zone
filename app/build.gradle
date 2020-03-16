@@ -64,6 +64,10 @@ dependencies {
     //noinspection GradleCompatible
     implementation 'com.android.support:design:28.1.1'
     // implementation 'com.google.android.material:material:1.1.0-alpha10'
-    
+
+    //statistics hello charts
+    implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
+    implementation 'com.jjoe64:graphview:4.2.2'
+
 
 }
