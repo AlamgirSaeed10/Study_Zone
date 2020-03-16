@@ -32,19 +32,18 @@ public class Tag {
     }
 
   public   class Data{
-      private static final String TAG = "Data";
-        ArrayList<String> tags;
+        ArrayList<String> strings;
 
-        public Data() {
-        }
+      public ArrayList<String> getStrings() {
+          return strings;
+      }
 
-        public ArrayList<String> getTags() {
-            Log.d(TAG, "getTags: "+tags.get(0));
-            return tags;
-        }
+      public void setStrings(ArrayList<String> strings) {
+          this.strings = strings;
+      }
 
-        public void setTags(ArrayList<String> tags) {
-            this.tags = tags;
-        }
-    }
+      public Data() {
+
+      }
+  }
 }

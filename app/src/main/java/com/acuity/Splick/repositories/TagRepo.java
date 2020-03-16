@@ -28,17 +28,15 @@ public class TagRepo {
         apiClient.getTags().enqueue(new Callback<Tag>() {
             @Override
             public void onResponse(Call<Tag> call, Response<Tag> response) {
-                if(response.isSuccessful() ) {
-                    ArrayList<String> list=response.body().getData().getTags();
-                    Log.d(TAG, "onResponse: "+list.get(1));
-                    tagMutableLiveData.setValue(response.body());
+                if(response.body().isSuccess()){
+                    Log.d(TAG, "onResponse: ");
                 }
+
             }
 
             @Override
             public void onFailure(Call<Tag> call, Throwable t) {
                 Log.d(TAG, "onFailure: "+t);
-             tagMutableLiveData.setValue(null);
             }
         });
         return tagMutableLiveData;
