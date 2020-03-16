@@ -2,6 +2,7 @@ package com.acuity.Splick.ui.fragments.authentication.signup;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -75,14 +76,23 @@ public class Social_Reach_Fragment extends Fragment {
         imBack.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_social_Reach_Fragment_to_sign_Up_Bio_Fragment);
         });
+
+        connect_to_insta.setOnClickListener(v-> getInstaFollowers());
+        connect_to_fb.setOnClickListener(v-> getFbFollowers());
+        connect_to_twitter.setOnClickListener(v-> getTwitterFollowers());
+        connect_to_youtube.setOnClickListener(v-> getYoutubeFollowers());
+        connect_to_snapchat.setOnClickListener(v-> getSnapchatFollowers());
+
     }
 
-    public void getTextVal() {
+    @SuppressLint("ResourceAsColor")
+    public void getInstaFollowers() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-        alertDialog.setTitle("PASSWORD");
-        alertDialog.setMessage("Enter Password");
+        alertDialog.setTitle("Instagram");
+        alertDialog.setIcon(R.drawable.insta);
 
         final EditText input = new EditText(getActivity());
+        input.setHint("Enter Number followers.");
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
@@ -93,9 +103,119 @@ public class Social_Reach_Fragment extends Fragment {
                 (dialog, which) -> {
                     insta_link = input.getText().toString();
                     if (insta_link.compareTo("") == 0) {
-                        } else {
-                            Toast.makeText(getActivity(),"Please fill detail.", Toast.LENGTH_SHORT).show();
-                        }
+                        Toast.makeText(getActivity(),"Please fill detail.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        connect_to_insta.setText(""+insta_link);
+                        connect_to_insta.setTextColor(R.color.black);
+                    }
+                    });
+
+        alertDialog.show();
+    }
+    @SuppressLint("ResourceAsColor")
+    public void getFbFollowers() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle("Facebook");
+        alertDialog.setIcon(R.drawable.facebook);
+
+        final EditText input = new EditText(getActivity());
+        input.setHint("Enter Number followers.");
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        input.setLayoutParams(lp);
+        alertDialog.setView(input);
+
+        alertDialog.setPositiveButton("YES",
+                (dialog, which) -> {
+                    insta_link = input.getText().toString();
+                    if (insta_link.compareTo("") == 0) {
+                        Toast.makeText(getActivity(),"Please fill detail.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        connect_to_fb.setText(""+insta_link);
+                        connect_to_fb.setTextColor(R.color.black);
+                    }
+                    });
+
+        alertDialog.show();
+    }
+    @SuppressLint("ResourceAsColor")
+    public void getYoutubeFollowers() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle("YouTube");
+        alertDialog.setIcon(R.drawable.youtube);
+
+        final EditText input = new EditText(getActivity());
+        input.setHint("Enter Number followers.");
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        input.setLayoutParams(lp);
+        alertDialog.setView(input);
+
+        alertDialog.setPositiveButton("YES",
+                (dialog, which) -> {
+                    insta_link = input.getText().toString();
+                    if (insta_link.compareTo("") == 0) {
+                        Toast.makeText(getActivity(),"Please fill detail.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        connect_to_youtube.setText(""+insta_link);
+                        connect_to_youtube.setTextColor(R.color.black);
+                    }
+                    });
+
+        alertDialog.show();
+    }
+    @SuppressLint("ResourceAsColor")
+    public void getTwitterFollowers() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle("Twitter");
+        alertDialog.setIcon(R.drawable.twitter);
+
+        final EditText input = new EditText(getActivity());
+        input.setHint("Enter Number followers.");
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        input.setLayoutParams(lp);
+        alertDialog.setView(input);
+
+        alertDialog.setPositiveButton("YES",
+                (dialog, which) -> {
+                    insta_link = input.getText().toString();
+                    if (insta_link.compareTo("") == 0) {
+                        Toast.makeText(getActivity(),"Please fill detail.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        connect_to_twitter.setText(""+insta_link);
+                        connect_to_twitter.setTextColor(R.color.black);
+                    }
+                    });
+
+        alertDialog.show();
+    }
+    @SuppressLint("ResourceAsColor")
+    public void getSnapchatFollowers() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle("Snapchat");
+        alertDialog.setIcon(R.drawable.snapchat);
+
+        final EditText input = new EditText(getActivity());
+        input.setHint("Enter Number followers.");
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        input.setLayoutParams(lp);
+        alertDialog.setView(input);
+
+        alertDialog.setPositiveButton("YES",
+                (dialog, which) -> {
+                    insta_link = input.getText().toString();
+                    if (insta_link.compareTo("") == 0) {
+                        Toast.makeText(getActivity(),"Please fill detail.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        connect_to_snapchat.setText(""+insta_link);
+                        connect_to_snapchat.setTextColor(R.color.black);
+                    }
                     });
 
         alertDialog.show();
