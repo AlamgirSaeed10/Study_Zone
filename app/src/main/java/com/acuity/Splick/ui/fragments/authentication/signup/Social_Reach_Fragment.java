@@ -2,6 +2,8 @@ package com.acuity.Splick.ui.fragments.authentication.signup;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,8 +15,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.acuity.Splick.R;
 
@@ -40,9 +45,7 @@ public class Social_Reach_Fragment extends Fragment {
     @BindView(R.id.connect_to_snapchat)
     TextView connect_to_snapchat;
 
-
-
-
+    String insta_link;
 
     private SocialReachViewModel mViewModel;
 
@@ -53,8 +56,8 @@ public class Social_Reach_Fragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.social__reach__fragment, container, false);
-        ButterKnife.bind(this,view);
+        View view = inflater.inflate(R.layout.social__reach__fragment, container, false);
+        ButterKnife.bind(this, view);
         return view;
     }
 
@@ -72,6 +75,30 @@ public class Social_Reach_Fragment extends Fragment {
         imBack.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_social_Reach_Fragment_to_sign_Up_Bio_Fragment);
         });
+    }
+
+    public void getTextVal() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle("PASSWORD");
+        alertDialog.setMessage("Enter Password");
+
+        final EditText input = new EditText(getActivity());
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        input.setLayoutParams(lp);
+        alertDialog.setView(input);
+
+        alertDialog.setPositiveButton("YES",
+                (dialog, which) -> {
+                    insta_link = input.getText().toString();
+                    if (insta_link.compareTo("") == 0) {
+                        } else {
+                            Toast.makeText(getActivity(),"Please fill detail.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+        alertDialog.show();
     }
 
 }
