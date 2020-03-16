@@ -27,6 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activities.onBoardScreen.IntroActivity"></activity>
+
     </application>
 
 </manifest>
