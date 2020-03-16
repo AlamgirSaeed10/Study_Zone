@@ -64,16 +64,16 @@ public class Sign_Up_Tags_Fragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel=new ViewModelProvider(getActivity()).get(SignUpInfoFragmentViewModel.class);
         mViewModel.getTag();
-        mViewModel.getTagMutableLiveData().observe(getViewLifecycleOwner()
-                , new Observer<Tag>() {
-                    @Override
-                    public void onChanged(Tag tag) {
-                        if(tag.isSuccess()){
+        mViewModel.getTagMutableLiveData().observe(getViewLifecycleOwner(),tag -> {
+            if (tag.isSuccess()==true)
+            {
+                Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+            }
+            else {
 
-                        }
+            }
+        });
 
-                    }
-                });
 
         tags_list.setOnCheckedChangeListener((chipGroup, i) -> {
            Chip chip=chipGroup.findViewById(i);
