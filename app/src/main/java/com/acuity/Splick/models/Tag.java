@@ -32,18 +32,8 @@ public class Tag {
     }
 
   public   class Data{
-        ArrayList<String> strings;
-
-      public ArrayList<String> getStrings() {
-          return strings;
-      }
-
-      public void setStrings(ArrayList<String> strings) {
-          this.strings = strings;
-      }
 
       public Data() {
-
       }
   }
 }

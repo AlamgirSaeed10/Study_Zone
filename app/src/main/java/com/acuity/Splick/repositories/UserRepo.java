@@ -36,6 +36,9 @@ public class UserRepo {
                  Log.d(TAG, "onResponse: ");
                  authLiveData.setValue(response.body());
              }
+             else {
+                 Log.d(TAG, "onResponse: "+response.message());
+             }
           }
 
           @Override
