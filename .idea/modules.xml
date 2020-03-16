@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/splick-mobile-app.iml" filepath="$PROJECT_DIR$/.idea/splick-mobile-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Splick.iml" filepath="$PROJECT_DIR$/Splick.iml" group="Splick" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="Splick/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/splick-app.iml" filepath="$PROJECT_DIR$/.idea/splick-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/splick-mobile-app-Splick.iml" filepath="$PROJECT_DIR$/splick-mobile-app-Splick.iml" group="Splick" />
+      <module fileurl="file://$PROJECT_DIR$/app/splick-mobile-app-app.iml" filepath="$PROJECT_DIR$/app/splick-mobile-app-app.iml" group="Splick/app" />
     </modules>
   </component>
 </project>
