@@ -33,6 +33,8 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,7 +66,7 @@ public class Add_Portfolio_Fragment extends Fragment {
     private AddPortfolioViewModel mViewModel;
     private int requestCode = 200;
     private int clickCode = 0;
-    HashMap<String,Uri> imgMap=new HashMap<>();
+    SortedMap<String,Uri> imgMap=new TreeMap<>();
 
     public static Add_Portfolio_Fragment newInstance() {
         return new Add_Portfolio_Fragment();
@@ -139,7 +141,10 @@ public class Add_Portfolio_Fragment extends Fragment {
 
     @OnClick(R.id.portfolio_upload_btn)
     public void setBtnUpload(){
-        Log.d(TAG, "setBtnUpload: "+imgMap.size());
+        for(Uri o:imgMap.values()){
+            //todo:set progress Bar
+            addImage(o);
+        }
     }
         @Override
         public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -190,7 +195,8 @@ public class Add_Portfolio_Fragment extends Fragment {
      mViewModel.addImage(134, file);
      mViewModel.getMutableLiveMedia().observe(getViewLifecycleOwner(),register -> {
          if(register.getSuccess()){
-             Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+
+             Navigation.findNavController(getView()).navigate(R.id.action_add_Portfolio_Fragment_to_profile_Completed_Fragment);
          }
          else{
              Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
