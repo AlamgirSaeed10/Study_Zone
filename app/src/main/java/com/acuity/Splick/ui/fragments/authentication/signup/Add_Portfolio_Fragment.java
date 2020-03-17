@@ -2,14 +2,6 @@ package com.acuity.Splick.ui.fragments.authentication.signup;
 
 import androidx.lifecycle.ViewModelProviders;
 
-import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,57 +9,28 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.acuity.Splick.R;
-import com.acuity.Splick.ui.activities.Dashboard.Main_Dashboard;
-import com.acuity.Splick.util.PrefUtil;
-
-import java.util.Objects;
-
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import es.dmoral.toasty.Toasty;
-import butterknife.OnClick;
-
-import static android.app.Activity.RESULT_OK;
 
 public class Add_Portfolio_Fragment extends Fragment {
-    ProgressDialog p;
+
+
     private AddPortfolioViewModel mViewModel;
-
-
     @BindView(R.id.portfolio_upload_btn)
     Button btnUpload;
     @BindView(R.id.skip_bio_tv)
     TextView tvSkip;
     @BindView(R.id.back_image)
     ImageView imgBack;
-    @BindView(R.id.portfolio_image_1)
-    ImageView imgOne;
-    @BindView(R.id.portfolio_image_2)
-    ImageView imgTwo;
-    @BindView(R.id.portfolio_image_3)
-    ImageView imgThree;
-    @BindView(R.id.portfolio_image_4)
-    ImageView imgFour;
-    @BindView(R.id.portfolio_image_5)
-    ImageView imgFive;
-    @BindView(R.id.portfolio_image_6)
-    ImageView imgSix;
-    private AddPortfolioViewModel mViewModel;
-    private int requestCode = 200;
-    private int clickCode = 0;
 
     public static Add_Portfolio_Fragment newInstance() {
         return new Add_Portfolio_Fragment();
@@ -87,8 +50,6 @@ public class Add_Portfolio_Fragment extends Fragment {
         mViewModel = ViewModelProviders.of(this).get(AddPortfolioViewModel.class);
         // TODO: Use the ViewModel
         btnUpload.setOnClickListener(v -> {
-           AsyncTaskExample example = new AsyncTaskExample();
-           example.execute();
             Navigation.findNavController(v).navigate(R.id.action_add_Portfolio_Fragment_to_profile_Completed_Fragment);
         });
         tvSkip.setOnClickListener(v -> {
@@ -99,108 +60,4 @@ public class Add_Portfolio_Fragment extends Fragment {
         });
     }
 
-    @SuppressLint("StaticFieldLeak")
-    private class AsyncTaskExample extends AsyncTask<String, String, String> {
-        @Override
-        protected String doInBackground(String... strings) {
-            return null;
-        }
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            p = new ProgressDialog(getActivity());
-            p.setMessage("Please wait...System is verifying User");
-            p.setIndeterminate(false);
-            p.setCancelable(false);
-            p.show();
-        }
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            mViewModel.checkLogin(email_sign_in_edt.getText().toString().trim(), password_sign_in_edt.getText().toString().trim());
-            mViewModel.getUserRepository().observe(getViewLifecycleOwner(), auth -> {
-                if (auth.getSuccess()==true) {
-                    p.dismiss();
-                    PrefUtil.saveUser(auth.getData(), Objects.requireNonNull(getActivity()));
-                    Intent intent = new Intent(getActivity(), Main_Dashboard.class);
-                    startActivity(intent);
-                } else {
-                    p.dismiss();
-                    Toasty.error(Objects.requireNonNull(getActivity()), "Check email or password.", Toast.LENGTH_SHORT, true).show();
-                }
-            });
-        }
-    }
-
-    @OnClick({R.id.portfolio_image_1, R.id.portfolio_image_2, R.id.portfolio_image_3, R.id.portfolio_image_4, R.id.portfolio_image_5, R.id.portfolio_image_6})
-    public void photoPicker(View v) {
-        switch (v.getId()) {
-            case R.id.portfolio_image_1:
-                clickCode = 1;
-                break;
-            case R.id.portfolio_image_2:
-                clickCode = 2;
-                break;
-            case R.id.portfolio_image_3:
-                clickCode = 3;
-                break;
-            case R.id.portfolio_image_4:
-                clickCode = 4;
-                break;
-            case R.id.portfolio_image_5:
-                clickCode = 5;
-                break;
-            case R.id.portfolio_image_6:
-                clickCode=6;
-                break;
-            default:
-                Toast.makeText(getActivity(), "Error occur", Toast.LENGTH_SHORT).show();
-        }
-        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-        photoPickerIntent.setType("image/*");
-        startActivityForResult(photoPickerIntent, requestCode);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (resultCode == RESULT_OK) {
-
-            try {
-                final Uri imageUri = data.getData();
-                final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
-                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                setImage(selectedImage);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_LONG).show();
-            }
-
-        } else {
-            Toast.makeText(getActivity(), "You haven't picked Image", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private void setImage(Bitmap image) {
-        switch (clickCode) {
-            case 1:
-                imgOne.setImageBitmap(image);
-                break;
-            case 2:
-                imgTwo.setImageBitmap(image);
-                break;
-            case 3:
-                imgThree.setImageBitmap(image);
-                break;
-            case 4:
-                imgFour.setImageBitmap(image);
-                break;
-            case 5:
-                imgFive.setImageBitmap(image);
-                break;
-            case 6:
-                imgSix.setImageBitmap(image);
-                break;
-        }
-
-    }
 }
