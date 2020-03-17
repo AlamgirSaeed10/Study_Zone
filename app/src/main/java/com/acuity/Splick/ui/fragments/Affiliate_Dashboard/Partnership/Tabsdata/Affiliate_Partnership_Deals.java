@@ -36,7 +36,7 @@ public class Affiliate_Partnership_Deals extends Fragment {
     RecyclerView deals_recycler_view;
 
 
-    private AffiliatePartnershipDealsViewModel mViewModel;
+    private com.acuity.Splick.ui.fragments.Affiliate_Dashboard.Partnership.Tabsdata.AffiliatePartnershipDealsViewModel mViewModel;
 
     public static Affiliate_Partnership_Deals newInstance() {
         return new Affiliate_Partnership_Deals();

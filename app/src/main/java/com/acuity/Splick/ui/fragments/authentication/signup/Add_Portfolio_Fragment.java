@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import com.acuity.Splick.R;
+import com.acuity.Splick.util.PrefUtil;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -158,7 +159,7 @@ public class Add_Portfolio_Fragment extends Fragment {
 
     }
     private void addImage(Uri file){
-     mViewModel.addImage(134,file);
+     mViewModel.addImage(104,file);
 
 /*
      mViewModel.getMutableLiveMedia().observe(getViewLifecycleOwner(),register -> {

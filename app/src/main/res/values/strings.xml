@@ -84,5 +84,7 @@
     <string name="_1m">1M</string>
     <string name="_6m">6M</string>
     <string name="_1Y">1Y</string>
+    <string name="payouts">Payouts</string>
+    <string name="statistics">statistics</string>
 
 </resources>
