@@ -1,5 +1,6 @@
 package com.acuity.Splick.ui.fragments.authentication.signup;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.*;
 import android.view.*;
