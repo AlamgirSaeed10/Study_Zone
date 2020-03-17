@@ -2,7 +2,6 @@ package com.acuity.Splick.ui.fragments.authentication.signup;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -18,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EdgeEffect;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,9 +24,9 @@ import android.widget.Toast;
 
 import com.acuity.Splick.R;
 import com.acuity.Splick.models.Register;
+import com.acuity.Splick.ui.fragments.authentication.signup.userInfo.SignUpInfoFragmentViewModel;
 import com.acuity.Splick.util.Constant;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import butterknife.BindView;

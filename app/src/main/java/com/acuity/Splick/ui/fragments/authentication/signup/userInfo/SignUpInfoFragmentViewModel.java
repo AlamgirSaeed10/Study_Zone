@@ -1,4 +1,4 @@
-package com.acuity.Splick.ui.fragments.authentication.signup;
+package com.acuity.Splick.ui.fragments.authentication.signup.userInfo;
 
 import android.util.Log;
 

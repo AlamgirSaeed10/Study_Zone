@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.acuity.Splick.R;
+import com.acuity.Splick.ui.fragments.authentication.signup.userInfo.SignUpInfoFragmentViewModel;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
