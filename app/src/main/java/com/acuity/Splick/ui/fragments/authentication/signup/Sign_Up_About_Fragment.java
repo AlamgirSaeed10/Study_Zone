@@ -139,7 +139,7 @@ public class Sign_Up_About_Fragment extends Fragment {
             objectHashMap.put("user_name",about_username_edt.getText().toString().trim());
             objectHashMap.put("user_location",about_location_edt.getText().toString().trim());
             mViewModel.updateUser(objectHashMap);
-            mViewModel.updateUserLiveData.observe(getViewLifecycleOwner(), new Observer<Register>() {
+            mViewModel.getUpdateUserLiveData().observe(getViewLifecycleOwner(), new Observer<Register>() {
                 @Override
                 public void onChanged(Register register) {
                     if(register.getSuccess()==true){

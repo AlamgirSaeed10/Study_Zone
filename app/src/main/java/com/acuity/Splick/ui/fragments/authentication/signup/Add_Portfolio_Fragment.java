@@ -122,6 +122,7 @@ public class Add_Portfolio_Fragment extends Fragment {
                 final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                 setImage(selectedImage);
+                File imageFilePath = new File(String.valueOf(imageUri));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_LONG).show();
