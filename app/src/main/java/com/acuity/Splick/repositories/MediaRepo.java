@@ -9,16 +9,9 @@ import androidx.lifecycle.MutableLiveData;
 import com.acuity.Splick.apiConfiguration.ApiInterfaces.ApiInterface;
 import com.acuity.Splick.apiConfiguration.retofit.ApiClient;
 import com.acuity.Splick.models.Register;
-
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,37 +19,36 @@ import retrofit2.Response;
 
 public class MediaRepo {
     private static final String TAG = "MediaRepo";
-    private static MediaRepo mediaRepo=new MediaRepo();
+    private static MediaRepo mediaRepo = new MediaRepo();
     private ApiInterface apiInterface;
-    public static MediaRepo getInstance(){
+
+    public static MediaRepo getInstance() {
         return mediaRepo;
     }
 
-    public MutableLiveData<Register> addMedia(int userID, File file){
-        MutableLiveData<Register> registerMutableLiveData=new MutableLiveData<>();
-        apiInterface= ApiClient.createService(ApiInterface.class);
-        RequestBody descriptionPart=RequestBody.create(MultipartBody.FORM,"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.");
-       //Todo convert to file
-        RequestBody forepart=RequestBody.create(MediaType.parse("image/*"),file);
-
-        MultipartBody.Part part= MultipartBody.Part.createFormData("media_item",file.getName(),forepart);
-
-        apiInterface.addPortfolio(userID,descriptionPart,part).enqueue(new Callback<Register>() {
+    public MutableLiveData<Register> addMedia(int userID, File file) {
+        MutableLiveData<Register> registerMutableLiveData = new MutableLiveData<>();
+        apiInterface = ApiClient.createService(ApiInterface.class);
+        //making request
+        RequestBody descriptionPart = RequestBody.create(MultipartBody.FORM, "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.");
+        RequestBody forepart = RequestBody.create(MediaType.parse("image/*"), file);
+        MultipartBody.Part part = MultipartBody.Part.createFormData("media_item", file.getName(), forepart);
+       //api call
+        apiInterface.addPortfolio(userID, descriptionPart, part).enqueue(new Callback<Register>() {
             @Override
             public void onResponse(Call<Register> call, Response<Register> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     Log.d(TAG, "onResponse: ");
                     registerMutableLiveData.postValue(response.body());
-                }
-                else {
+                } else {
                     Log.d(TAG, "onResponse: ");
                 }
             }
 
             @Override
             public void onFailure(Call<Register> call, Throwable t) {
-                Log.d(TAG, "onFailure: "+t);
-              registerMutableLiveData.postValue(null);
+                Log.d(TAG, "onFailure: " + t);
+                registerMutableLiveData.postValue(null);
             }
         });
 
