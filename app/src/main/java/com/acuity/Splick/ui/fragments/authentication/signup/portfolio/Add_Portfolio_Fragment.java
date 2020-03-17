@@ -195,8 +195,13 @@ public class Add_Portfolio_Fragment extends Fragment {
      mViewModel.addImage(134, file);
      mViewModel.getMutableLiveMedia().observe(getViewLifecycleOwner(),register -> {
          if(register.getSuccess()){
+             Log.d(TAG, "addImage: "+imgMap.size());
+             imgMap.remove(imgMap.firstKey());
+             if(imgMap.isEmpty()){
+                 Log.d(TAG, "addImage: "+imgMap.size());
+                 Navigation.findNavController(getView()).navigate(R.id.action_add_Portfolio_Fragment_to_profile_Completed_Fragment);
+             }
 
-             Navigation.findNavController(getView()).navigate(R.id.action_add_Portfolio_Fragment_to_profile_Completed_Fragment);
          }
          else{
              Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
