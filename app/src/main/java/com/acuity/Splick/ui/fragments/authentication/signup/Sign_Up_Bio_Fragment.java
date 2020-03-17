@@ -64,7 +64,7 @@ public class Sign_Up_Bio_Fragment extends Fragment {
             userUpdate.put("user_bio",bio_etd);
             //Todo: integrate progress bar
             mViewModel.updateUser(userUpdate);
-            mViewModel.updateUserLiveData.observe(getViewLifecycleOwner(), new Observer<Register>() {
+            mViewModel.getUpdateUserLiveData().observe(getViewLifecycleOwner(), new Observer<Register>() {
                 @Override
                 public void onChanged(Register register) {
                     if(register.getSuccess()==true){

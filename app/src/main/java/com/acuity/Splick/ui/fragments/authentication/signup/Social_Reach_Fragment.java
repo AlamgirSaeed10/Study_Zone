@@ -75,7 +75,7 @@ public class Social_Reach_Fragment extends Fragment {
         btnNext.setOnClickListener(v -> {
             userSocialConnection.put("user_id", Constant.USER_ID);
             mViewModel.updateUser(userSocialConnection);
-            mViewModel.updateUserLiveData.observe(getViewLifecycleOwner(), register -> {
+            mViewModel.getUpdateUserLiveData().observe(getViewLifecycleOwner(), register -> {
                 if(register.getSuccess()){
                     Navigation.findNavController(v).navigate(R.id.action_social_Reach_Fragment_to_add_Portfolio_Fragment);
                 }

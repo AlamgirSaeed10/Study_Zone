@@ -1,5 +1,6 @@
 package com.acuity.Splick.ui.fragments.authentication.signup;
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
@@ -24,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.acuity.Splick.R;
+import com.acuity.Splick.util.Constant;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -75,7 +77,7 @@ public class Add_Portfolio_Fragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(AddPortfolioViewModel.class);
+        mViewModel = new ViewModelProvider(getActivity()).get(AddPortfolioViewModel.class);
         // TODO: Use the ViewModel
         btnUpload.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_add_Portfolio_Fragment_to_profile_Completed_Fragment);
@@ -126,7 +128,8 @@ public class Add_Portfolio_Fragment extends Fragment {
                 final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                 setImage(selectedImage);
-                File imageFilePath = new File(String.valueOf(imageUri));
+                String imagePath=imageUri.getPath();
+                addImage(imagePath);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_LONG).show();
@@ -160,7 +163,18 @@ public class Add_Portfolio_Fragment extends Fragment {
         }
 
     }
-    private void setImage(File file){
+    private void addImage(String file){
+     mViewModel.addImage(134,file);
 
+/*
+     mViewModel.getMutableLiveMedia().observe(getViewLifecycleOwner(),register -> {
+         if(register.getSuccess()){
+             Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+         }
+         else{
+             Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+         }
+     });
+*/
     }
 }
