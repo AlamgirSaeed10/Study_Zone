@@ -32,15 +32,14 @@ public class MediaRepo {
         return mediaRepo;
     }
 
-    public MutableLiveData<Register> addMedia(int userID, String imagPath){
+    public MutableLiveData<Register> addMedia(int userID, File file){
         MutableLiveData<Register> registerMutableLiveData=new MutableLiveData<>();
         apiInterface= ApiClient.createService(ApiInterface.class);
         RequestBody descriptionPart=RequestBody.create(MultipartBody.FORM,"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.");
        //Todo convert to file
-        File file=new File(imagPath);
-        RequestBody filepart=RequestBody.create(MediaType.parse("image/*"),file);
+        RequestBody forepart=RequestBody.create(MediaType.parse("image/*"),file);
 
-        MultipartBody.Part part= MultipartBody.Part.createFormData("media_item",file.getName(),filepart);
+        MultipartBody.Part part= MultipartBody.Part.createFormData("media_item",file.getName(),forepart);
 
         apiInterface.addPortfolio(userID,descriptionPart,part).enqueue(new Callback<Register>() {
             @Override

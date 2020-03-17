@@ -37,7 +37,6 @@ public interface ApiInterface {
     Call<Register> update(@FieldMap HashMap<String,Object> mapUpdate);
     @GET("business/tags")
     Call<Tag>getTags();
-
     @Multipart
     @POST("v1_portfolio/add")
     Call<Register> addPortfolio(@Part("user_id") int userID, @Part("title") RequestBody title, @Part MultipartBody.Part file);

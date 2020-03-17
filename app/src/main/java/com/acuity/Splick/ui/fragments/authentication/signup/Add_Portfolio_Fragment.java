@@ -1,7 +1,9 @@
 package com.acuity.Splick.ui.fragments.authentication.signup;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,12 +20,20 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import com.acuity.Splick.R;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.BaseMultiplePermissionsListener;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,6 +41,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.security.Permission;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -116,15 +128,32 @@ public class Add_Portfolio_Fragment extends Fragment {
             default:
                 Toast.makeText(getActivity(), "Error occur", Toast.LENGTH_SHORT).show();
         }
-        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-        photoPickerIntent.setType("image/*");
-        startActivityForResult(photoPickerIntent, requestCode);
-    }
+
+            // Permission has already been granted
+        Dexter.withActivity(getActivity()).withPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.
+                permission.READ_EXTERNAL_STORAGE).withListener(new MultiplePermissionsListener() {
+            @Override
+            public void onPermissionsChecked(MultiplePermissionsReport report) {
+                if(report.areAllPermissionsGranted()){
+                    Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                    photoPickerIntent.setType("image/*");
+                    startActivityForResult(photoPickerIntent, requestCode);
+                }
+                else {
+                    Toast.makeText(getActivity(),"You must grant all permissions ",Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                token.continuePermissionRequest();
+            }
+        }).onSameThread().check();}
+
 
         @Override
         public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
             if (resultCode == RESULT_OK) {
-
             try {
                 final Uri imageUri = data.getData();
                 final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
@@ -164,10 +193,11 @@ public class Add_Portfolio_Fragment extends Fragment {
         }
 
     }
-    private void addImage(Uri file){
-     mViewModel.addImage(134,getRealPathFromUri(getActivity(),file) );
+    private void addImage(Uri urifile){
+        File file=new File(getRealPathFromUri(getActivity(),urifile));
+     mViewModel.addImage(134, file);
 
-/*
+
      mViewModel.getMutableLiveMedia().observe(getViewLifecycleOwner(),register -> {
          if(register.getSuccess()){
              Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
@@ -176,7 +206,7 @@ public class Add_Portfolio_Fragment extends Fragment {
              Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
          }
      });
-*/
+
     }
     public static String getRealPathFromUri(Activity activity, Uri contentUri) {
         String[] proj = { MediaStore.Images.Media.DATA };

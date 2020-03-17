@@ -68,7 +68,8 @@ dependencies {
     //statistics hello charts
     implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
     implementation 'com.jjoe64:graphview:4.2.2'
-
+   //Dexter to check permission
+    implementation 'com.karumi:dexter:6.0.2'
 
 
 }
