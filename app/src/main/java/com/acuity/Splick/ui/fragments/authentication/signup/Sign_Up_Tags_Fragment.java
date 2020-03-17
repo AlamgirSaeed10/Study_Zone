@@ -30,7 +30,7 @@ import butterknife.ButterKnife;
 
 public class Sign_Up_Tags_Fragment extends Fragment {
     private static final String TAG = "Sign_Up_Tags_Fragment";
-    private SignUpInfoFragmentViewModel mViewModel;
+    private SearchTagsViewModel mViewModel;
     private static ArrayList<String> chipList=new ArrayList<String>();
     @BindView(R.id.sign_up_tags_next_btn)
     Button btnNext;
@@ -56,8 +56,8 @@ public class Sign_Up_Tags_Fragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel=new ViewModelProvider(getActivity()).get(SignUpInfoFragmentViewModel.class);
-        mViewModel.getTag();
+        mViewModel=new ViewModelProvider(getActivity()).get(SearchTagsViewModel.class);
+
         mViewModel.getTagMutableLiveData().observe(getViewLifecycleOwner(),tag -> {
             if (tag.isSuccess()==true)
             {

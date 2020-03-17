@@ -30,6 +30,7 @@ public class TagRepo {
             public void onResponse(Call<Tag> call, Response<Tag> response) {
                 if(response.body().isSuccess()){
                     Log.d(TAG, "onResponse: ");
+                    tagMutableLiveData.postValue(response.body());
                 }
 
             }
@@ -37,6 +38,7 @@ public class TagRepo {
             @Override
             public void onFailure(Call<Tag> call, Throwable t) {
                 Log.d(TAG, "onFailure: "+t);
+                tagMutableLiveData.postValue(null);
             }
         });
         return tagMutableLiveData;
