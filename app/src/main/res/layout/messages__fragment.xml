@@ -55,6 +55,6 @@
         android:layout_height="match_parent"
         android:layout_below="@id/search_message"
         android:layout_margin="@dimen/_10sdp"
-        tools:listitem="@layout/recycler_view_item" />
+        tools:listitem="@layout/message_list_recycler_view" />
 
 </RelativeLayout>
