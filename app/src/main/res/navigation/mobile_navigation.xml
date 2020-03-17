@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/add_Portfolio_Fragment"
-        android:name="com.acuity.Splick.ui.fragments.authentication.signup.Add_Portfolio_Fragment"
+        android:name="com.acuity.Splick.ui.fragments.authentication.signup.portfolio.Add_Portfolio_Fragment"
         android:label="Add_Portfolio_Fragment" >
         <action
             android:id="@+id/action_add_Portfolio_Fragment_to_profile_Completed_Fragment"

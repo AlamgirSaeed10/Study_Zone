@@ -49,9 +49,7 @@ public class Social_Reach_Fragment extends Fragment {
     @BindView(R.id.connect_to_snapchat)
     TextView connect_to_snapchat;
     private HashMap<String,Object> userSocialConnection=new HashMap<>();
-
     String insta_link;
-
     private SignUpInfoFragmentViewModel mViewModel;
 
     public static Social_Reach_Fragment newInstance() {
