@@ -16,15 +16,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import com.acuity.Splick.R;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,7 +71,7 @@ public class Add_Portfolio_Fragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(AddPortfolioViewModel.class);
+        mViewModel = new ViewModelProvider(getActivity()).get(AddPortfolioViewModel.class);
         // TODO: Use the ViewModel
         btnUpload.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.action_add_Portfolio_Fragment_to_profile_Completed_Fragment);
@@ -104,14 +103,13 @@ public class Add_Portfolio_Fragment extends Fragment {
                 clickCode = 5;
                 break;
             case R.id.portfolio_image_6:
-                clickCode = 6;
+                clickCode=6;
                 break;
             default:
                 Toast.makeText(getActivity(), "Error occur", Toast.LENGTH_SHORT).show();
         }
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
-        photoPickerIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         startActivityForResult(photoPickerIntent, requestCode);
     }
 
@@ -119,16 +117,17 @@ public class Add_Portfolio_Fragment extends Fragment {
         public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
             if (resultCode == RESULT_OK) {
 
-                try {
-                    final Uri imageUri = data.getData();
-                    final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
-                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                    setImage(selectedImage);
-                    File imageFilePath = new File(String.valueOf(imageUri));
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_LONG).show();
-                }
+            try {
+                final Uri imageUri = data.getData();
+                final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
+                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                setImage(selectedImage);
+                String imagePath=imageUri.getPath();
+                addImage(imagePath);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_LONG).show();
+            }
 
             } else {
                 Toast.makeText(getActivity(), "You haven't picked Image", Toast.LENGTH_LONG).show();
@@ -156,8 +155,20 @@ public class Add_Portfolio_Fragment extends Fragment {
                 imgSix.setImageBitmap(image);
                 break;
         }
-    }
 
-    private void setImage(File file) {
+    }
+    private void addImage(String file){
+     mViewModel.addImage(134,file);
+
+/*
+     mViewModel.getMutableLiveMedia().observe(getViewLifecycleOwner(),register -> {
+         if(register.getSuccess()){
+             Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+         }
+         else{
+             Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
+         }
+     });
+*/
     }
 }

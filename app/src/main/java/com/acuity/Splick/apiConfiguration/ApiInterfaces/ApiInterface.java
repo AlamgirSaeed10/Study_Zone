@@ -8,6 +8,8 @@ import java.io.File;
 import java.nio.file.spi.FileTypeDetector;
 import java.util.HashMap;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Field;
@@ -37,8 +39,7 @@ public interface ApiInterface {
     Call<Tag>getTags();
 
     @Multipart
-    @FormUrlEncoded
-    @POST()
-    Call<Register>addPortfolio(@Field("user_id")String userID, @Field("title")String title, @Part("media_item") File file);
+    @POST("v1_portfolio/add")
+    Call<Register> addPortfolio(@Part("user_id") int userID, @Part("title") RequestBody title, @Part MultipartBody.Part file);
 
 }
