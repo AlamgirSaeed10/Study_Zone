@@ -34,6 +34,7 @@ import java.io.InputStream;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.http.Url;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -128,8 +129,7 @@ public class Add_Portfolio_Fragment extends Fragment {
                 final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                 setImage(selectedImage);
-                String imagePath=imageUri.getPath();
-                addImage(imagePath);
+                addImage(imageUri);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_LONG).show();
@@ -163,7 +163,7 @@ public class Add_Portfolio_Fragment extends Fragment {
         }
 
     }
-    private void addImage(String file){
+    private void addImage(Uri file){
      mViewModel.addImage(134,file);
 
 /*
