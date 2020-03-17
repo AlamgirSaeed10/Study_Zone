@@ -22,7 +22,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.acuity.Splick.R;
-import com.acuity.Splick.ui.fragments.authentication.signup.Sign_Up_Info_fragmentArgs;
 import com.acuity.Splick.util.Constant;
 import com.google.android.material.textfield.TextInputLayout;
 
