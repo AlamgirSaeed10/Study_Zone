@@ -1,10 +1,13 @@
 package com.acuity.Splick.ui.fragments.authentication.signup.portfolio;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -23,6 +26,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.acuity.Splick.R;
+import com.acuity.Splick.ui.activities.Dashboard.Main_Dashboard;
+import com.acuity.Splick.util.PrefUtil;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -33,16 +38,21 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import es.dmoral.toasty.Toasty;
 
 import static android.app.Activity.RESULT_OK;
 
 public class Add_Portfolio_Fragment extends Fragment {
     private static final String TAG = "Add_Portfolio_Fragment";
-
+    File file =null;
+    ProgressDialog p;
     @BindView(R.id.portfolio_upload_btn)
     Button btnUpload;
     @BindView(R.id.skip_bio_tv)
@@ -64,7 +74,7 @@ public class Add_Portfolio_Fragment extends Fragment {
     private AddPortfolioViewModel mViewModel;
     private int requestCode = 200;
     private int clickCode = 0;
-    HashMap<String,Uri> imgMap=new HashMap<>();
+    SortedMap<String,Uri> imgMap=new TreeMap<>();
 
     public static Add_Portfolio_Fragment newInstance() {
         return new Add_Portfolio_Fragment();
@@ -139,10 +149,13 @@ public class Add_Portfolio_Fragment extends Fragment {
 
     @OnClick(R.id.portfolio_upload_btn)
     public void setBtnUpload(){
-        Log.d(TAG, "setBtnUpload: "+imgMap.size());
+        for(Uri o:imgMap.values()){
+            //todo:set progress Bar
+            addImage(o);
+        }
     }
-        @Override
-        public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
             if (resultCode == RESULT_OK) {
 
                 final Uri imageUri = data.getData();
@@ -186,17 +199,9 @@ public class Add_Portfolio_Fragment extends Fragment {
     }
     //send to server
     private void addImage(Uri urifile){
-        File file=new File(getRealPathFromUri(getActivity(),urifile));
-     mViewModel.addImage(134, file);
-     mViewModel.getMutableLiveMedia().observe(getViewLifecycleOwner(),register -> {
-         if(register.getSuccess()){
-             Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
-         }
-         else{
-             Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
-         }
-     });
-
+        file=new File(getRealPathFromUri(getActivity(),urifile));
+        AsyncTaskExample example = new AsyncTaskExample();
+        example.execute();
     }
 
     //change Uri to file path
@@ -206,5 +211,37 @@ public class Add_Portfolio_Fragment extends Fragment {
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
         cursor.moveToFirst();
         return cursor.getString(column_index);
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private class AsyncTaskExample extends AsyncTask<String, String, String> {
+        @Override
+        protected String doInBackground(String... strings) {
+            return null;
+        }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            p = new ProgressDialog(getActivity());
+            p.setMessage("Please wait...while uploading Images.");
+            p.setIndeterminate(false);
+            p.setCancelable(false);
+            p.show();
+        }
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            mViewModel.addImage(134, file);
+            mViewModel.getMutableLiveMedia().observe(getViewLifecycleOwner(),register -> {
+                if(register.getSuccess()){
+                    p.dismiss();
+                    Navigation.findNavController(getView()).navigate(R.id.action_add_Portfolio_Fragment_to_profile_Completed_Fragment);
+                }
+                else{
+                    p.dismiss();
+                    Toast.makeText(getActivity(), "Error during Image Upload.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }
