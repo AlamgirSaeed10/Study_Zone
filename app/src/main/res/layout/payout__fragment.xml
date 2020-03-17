@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.acuity.Splick.ui.fragments.Affiliate_Dashboard.Earnings.Payout_Fragment"
+    android:background="@color/lighter_gray">
+    <TextView
+        android:id="@+id/up_commission_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upcoming Commission"
+        android:layout_marginTop="@dimen/_120sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:textStyle="normal"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_20sdp"
+        />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp"
+        app:cardCornerRadius="@dimen/_20sdp"
+        android:layout_margin="@dimen/_20sdp"
+        android:layout_below="@id/up_commission_tv">
+        <TextView
+            android:id="@+id/commission_value_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="$4,356"
+            android:textSize="@dimen/_35sdp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            />
+    </androidx.cardview.widget.CardView>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/request_payout_btn"
+        android:layout_width="@dimen/_180sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white_text"
+        android:text="Request Payout"
+        android:textSize="@dimen/_15sdp"
+        />
+</RelativeLayout>

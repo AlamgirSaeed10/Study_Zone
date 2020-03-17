@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+  <de.hdodenhof.circleimageview.CircleImageView
+      android:id="@+id/message_user_icon"
+      android:layout_width="@dimen/_40sdp"
+      android:layout_height="@dimen/_40sdp"
+      tools:src="@tools:sample/avatars"
+      app:layout_constraintStart_toStartOf="parent"
+      android:layout_marginStart="@dimen/_4sdp"
+      app:layout_constraintTop_toTopOf="parent"
+      android:layout_marginTop="@dimen/_4sdp" />
+
+  <TextView
+      android:id="@+id/message_username"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      tools:text="@tools:sample/full_names"
+      android:textSize="@dimen/_18sdp"
+      android:textColor="@android:color/black"
+      app:layout_constraintTop_toTopOf="@+id/message_user_icon"
+      app:layout_constraintStart_toEndOf="@+id/message_user_icon"
+      android:layout_marginStart="@dimen/_4sdp"
+      android:layout_marginBottom="@dimen/_4sdp"
+      app:layout_constraintBottom_toTopOf="@+id/message_desc" />
+
+  <TextView
+      android:id="@+id/message_desc"
+      android:layout_width="@dimen/_220sdp"
+      android:layout_height="@dimen/_20sdp"
+      tools:text="@tools:sample/lorem[4:10]"
+      app:layout_constraintBottom_toBottomOf="@+id/message_user_icon"
+      app:layout_constraintStart_toEndOf="@+id/message_user_icon"
+      android:layout_marginStart="@dimen/_4sdp"
+      app:layout_constraintEnd_toEndOf="parent"
+      android:layout_marginEnd="@dimen/_4sdp"
+      app:layout_constraintHorizontal_bias="0.050" />
+
+  <TextView
+      android:id="@+id/message_date"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      tools:text="@tools:sample/date/hhmm"
+      app:layout_constraintTop_toTopOf="@+id/message_user_icon"
+      app:layout_constraintEnd_toEndOf="parent"
+      android:layout_marginEnd="@dimen/_4sdp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

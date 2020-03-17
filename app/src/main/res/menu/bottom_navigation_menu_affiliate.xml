@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/affiliate_home"
+        android:title="Home"
+        android:icon="@drawable/nav_home"
+        app:showAsAction="always">
+    </item>
+    <item
+        android:id="@+id/affiliate_search"
+        android:title="Search"
+        android:icon="@drawable/nav_discover"
+        app:showAsAction="always">
+    </item>
+    <item
+        android:id="@+id/affiliate_partnership"
+        android:title="PartnerShips"
+        android:icon="@drawable/nav_partnerships"
+        app:showAsAction="always">
+    </item>
+    <item
+        android:id="@+id/affiliate_earning"
+        android:title="Earnings"
+        android:icon="@drawable/nav_earnings"
+        app:showAsAction="always">
+    </item>
+    <item
+        android:id="@+id/affiliate_profile"
+        android:title="About"
+        android:icon="@drawable/profile"
+        app:showAsAction="always">
+    </item>
+</menu>
