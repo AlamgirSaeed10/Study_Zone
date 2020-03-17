@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 
 import com.acuity.Splick.R;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -155,6 +157,9 @@ public class Add_Portfolio_Fragment extends Fragment {
                 imgSix.setImageBitmap(image);
                 break;
         }
+
+    }
+    private void setImage(File file){
 
     }
 }

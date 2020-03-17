@@ -47,7 +47,7 @@
     </fragment>
     <fragment
         android:id="@+id/sign_Up_Info_fragment"
-        android:name="com.acuity.Splick.ui.fragments.authentication.signup.Sign_Up_Info_fragment"
+        android:name="com.acuity.Splick.ui.fragments.authentication.signup.userInfo.Sign_Up_Info_fragment"
         android:label="Sign_Up_Info_fragment" >
         <action
             android:id="@+id/action_sign_Up_Info_fragment_to_sign_Up_About_Fragment"

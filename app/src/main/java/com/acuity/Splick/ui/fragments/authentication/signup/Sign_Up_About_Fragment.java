@@ -4,7 +4,6 @@ import  android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +21,7 @@ import androidx.navigation.Navigation;
 
 import com.acuity.Splick.R;
 import com.acuity.Splick.models.Register;
+import com.acuity.Splick.ui.fragments.authentication.signup.userInfo.SignUpInfoFragmentViewModel;
 import com.acuity.Splick.util.Constant;
 import com.google.android.material.textfield.TextInputLayout;
 

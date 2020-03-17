@@ -4,6 +4,8 @@ import com.acuity.Splick.models.Auth;
 import com.acuity.Splick.models.Register;
 import com.acuity.Splick.models.Tag;
 
+import java.io.File;
+import java.nio.file.spi.FileTypeDetector;
 import java.util.HashMap;
 
 import retrofit2.Call;
@@ -12,7 +14,9 @@ import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
@@ -31,5 +35,10 @@ public interface ApiInterface {
     Call<Register> update(@FieldMap HashMap<String,Object> mapUpdate);
     @GET("business/tags")
     Call<Tag>getTags();
+
+    @Multipart
+    @FormUrlEncoded
+    @POST()
+    Call<Register>addPortfolio(@Field("user_id")String userID, @Field("title")String title, @Part("media_item") File file);
 
 }

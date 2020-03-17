@@ -1,6 +1,5 @@
 package com.acuity.Splick.ui.fragments.authentication.signup;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
@@ -23,10 +22,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.acuity.Splick.R;
-import com.acuity.Splick.models.Register;
+import com.acuity.Splick.ui.fragments.authentication.signup.userInfo.SignUpInfoFragmentViewModel;
 import com.acuity.Splick.util.Constant;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +38,6 @@ public class Social_Reach_Fragment extends Fragment {
     TextView tvSkip;
     @BindView(R.id.back_image)
     ImageView imBack;
-
     @BindView(R.id.connect_to_insta)
     TextView connect_to_insta;
     @BindView(R.id.connect_to_fb)
@@ -49,7 +48,7 @@ public class Social_Reach_Fragment extends Fragment {
     TextView connect_to_youtube;
     @BindView(R.id.connect_to_snapchat)
     TextView connect_to_snapchat;
-    HashMap<String,Object> userSocialConnection=new HashMap<>();
+    private HashMap<String,Object> userSocialConnection=new HashMap<>();
 
     String insta_link;
 
@@ -70,31 +69,24 @@ public class Social_Reach_Fragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel=new ViewModelProvider(getActivity()).get(SignUpInfoFragmentViewModel.class);
+        mViewModel=new ViewModelProvider(Objects.requireNonNull(getActivity())).get(SignUpInfoFragmentViewModel.class);
 
         // TODO: Use the ViewModel
         btnNext.setOnClickListener(v -> {
             userSocialConnection.put("user_id", Constant.USER_ID);
             mViewModel.updateUser(userSocialConnection);
-            mViewModel.updateUserLiveData.observe(getViewLifecycleOwner(), new Observer<Register>() {
-                @Override
-                public void onChanged(Register register) {
-                    if(register.getSuccess()){
-                        Navigation.findNavController(v).navigate(R.id.action_social_Reach_Fragment_to_add_Portfolio_Fragment);
-                    }
-                    else {
-                        Toast.makeText(getActivity(), "Error Occurred", Toast.LENGTH_SHORT).show();
-                    }
+            mViewModel.updateUserLiveData.observe(getViewLifecycleOwner(), register -> {
+                if(register.getSuccess()){
+                    Navigation.findNavController(v).navigate(R.id.action_social_Reach_Fragment_to_add_Portfolio_Fragment);
+                }
+                else {
+                    Toast.makeText(getActivity(), "Error Occurred", Toast.LENGTH_SHORT).show();
                 }
             });
 
         });
-        tvSkip.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.action_social_Reach_Fragment_to_add_Portfolio_Fragment);
-        });
-        imBack.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.action_social_Reach_Fragment_to_sign_Up_Bio_Fragment);
-        });
+        tvSkip.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_social_Reach_Fragment_to_add_Portfolio_Fragment));
+        imBack.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.action_social_Reach_Fragment_to_sign_Up_Bio_Fragment));
 
         connect_to_insta.setOnClickListener(v-> getInstaName());
         connect_to_fb.setOnClickListener(v-> getFbName());
@@ -105,7 +97,7 @@ public class Social_Reach_Fragment extends Fragment {
     }
 
     @SuppressLint("ResourceAsColor")
-    public void getInstaName() {
+    private void getInstaName() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
         alertDialog.setTitle("Instagram");
         alertDialog.setIcon(R.drawable.insta);
