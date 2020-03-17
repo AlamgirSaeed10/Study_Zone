@@ -140,7 +140,30 @@ public class Sign_Up_Info_fragment extends Fragment {
         password_sign_up_edt1.setError(null);
         email_sign_up_edt1.setError(null);
     }
+/*
+    public void registerUser(String user_mail, String user_pass, String user_role) {
+        Log.d(TAG, "registerUser: ");
+        mViewModel.setSignUp(user_mail, user_pass, user_role);
+        mViewModel.setSignUPLiveData().observe(getViewLifecycleOwner(), new Observer<Register>() {
+            @Override
+            public void onChanged(Register register) {
+                Log.d(TAG, "onChanged: ");
+                if (register.getSuccess() == true) {
+                    Constant.USER_ID = register.getData();
+                    Log.d(TAG, "onChanged: " + register.getData());
+                    Navigation.findNavController(getView()).navigate(R.id.action_sign_Up_Info_fragment_to_sign_Up_About_Fragment);
+                } else {
+                    //todo:show error
+                    Toast.makeText(getActivity(), "Already register", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
+
+    }
+
+
+ */
     @SuppressLint("StaticFieldLeak")
     private class AsyncTaskExample extends AsyncTask<String, String, String> {
         @Override

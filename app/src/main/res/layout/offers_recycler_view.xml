@@ -26,7 +26,7 @@
         android:id="@+id/offer_image"
         android:layout_width="@dimen/_50sdp"
         android:layout_height="@dimen/_50sdp"
-        android:src="@drawable/download"
+        android:src="@drawable/tick_green"
         android:layout_marginStart="@dimen/_10sdp"
       />
     <TextView

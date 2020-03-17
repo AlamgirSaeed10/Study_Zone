@@ -1,21 +1,10 @@
 package com.acuity.Splick.ui.fragments.authentication.signup;
 
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +13,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.acuity.Splick.R;
-import com.acuity.Splick.util.Constant;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 
-import java.io.File;
+import com.acuity.Splick.R;
+
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -120,9 +114,9 @@ public class Add_Portfolio_Fragment extends Fragment {
         startActivityForResult(photoPickerIntent, requestCode);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (resultCode == RESULT_OK) {
+        @Override
+        public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+            if (resultCode == RESULT_OK) {
 
             try {
                 final Uri imageUri = data.getData();
@@ -135,10 +129,10 @@ public class Add_Portfolio_Fragment extends Fragment {
                 Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_LONG).show();
             }
 
-        } else {
-            Toast.makeText(getActivity(), "You haven't picked Image", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getActivity(), "You haven't picked Image", Toast.LENGTH_LONG).show();
+            }
         }
-    }
 
     private void setImage(Bitmap image) {
         switch (clickCode) {
