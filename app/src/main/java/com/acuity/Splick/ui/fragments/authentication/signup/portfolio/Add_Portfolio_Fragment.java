@@ -203,6 +203,7 @@ public class Add_Portfolio_Fragment extends Fragment {
         AsyncTaskExample example = new AsyncTaskExample();
         example.execute();
     }
+
     //change Uri to file path
     public static String getRealPathFromUri(Activity activity, Uri contentUri) {
         String[] proj = { MediaStore.Images.Media.DATA };
