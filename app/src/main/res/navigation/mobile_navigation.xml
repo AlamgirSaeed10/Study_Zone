@@ -12,12 +12,11 @@
         android:name="com.acuity.Splick.ui.fragments.authentication.signup.portfolio.Add_Portfolio_Fragment"
         android:label="Add_Portfolio_Fragment" >
         <action
-            android:id="@+id/action_add_Portfolio_Fragment_to_profile_Completed_Fragment"
-            app:destination="@id/profile_Completed_Fragment"
-            />
-        <action
             android:id="@+id/action_add_Portfolio_Fragment_to_social_Reach_Fragment"
             app:destination="@id/social_Reach_Fragment" />
+        <action
+            android:id="@+id/action_add_Portfolio_Fragment_to_profile_Completed_Fragment"
+            app:destination="@id/profile_Completed_Fragment" />
     </fragment>
     <fragment
         android:id="@+id/sign_In_Fragment"

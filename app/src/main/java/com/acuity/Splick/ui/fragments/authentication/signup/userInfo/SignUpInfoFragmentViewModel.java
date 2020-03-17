@@ -39,11 +39,5 @@ public class SignUpInfoFragmentViewModel extends ViewModel {
         Log.d(TAG, "setSignUPLiveData:");
          return updateUserLiveData;
     }
-    public void getTag(){
-         tagRepo=TagRepo.getInstance();
-         tagMutableLiveData=tagRepo.getTags();
-    }
-    public MutableLiveData<Tag> getTagMutableLiveData(){
-         return tagMutableLiveData;
-    }
+
 }
