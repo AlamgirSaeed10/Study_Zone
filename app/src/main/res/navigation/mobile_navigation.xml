@@ -5,7 +5,7 @@
     android:id="@+id/mobile_navigation"
     tools:ignore="UnusedNavigation"
 
-    app:startDestination="@id/sign_Up_Tags_Fragment">
+    app:startDestination="@id/select_User_Type_Fragment">
 
     <fragment
         android:id="@+id/add_Portfolio_Fragment"
