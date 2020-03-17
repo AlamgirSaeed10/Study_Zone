@@ -16,9 +16,9 @@ import java.util.HashMap;
 
 public class SignUpInfoFragmentViewModel extends ViewModel {
     private static final String TAG = "SignUpInfoFragmentViewM";
-     MutableLiveData<Register> signUp=new MutableLiveData<>();
-     MutableLiveData<Tag> tagMutableLiveData=new MutableLiveData<>();
-     MutableLiveData<Register> updateUserLiveData=new MutableLiveData<>();
+     private MutableLiveData<Register> signUp=new MutableLiveData<>();
+     private MutableLiveData<Tag> tagMutableLiveData=new MutableLiveData<>();
+    private MutableLiveData<Register> updateUserLiveData=new MutableLiveData<>();
      UserRepo userRepo;
      TagRepo tagRepo;
      public void setSignUp(String mail,String user_pass,String user_role){
