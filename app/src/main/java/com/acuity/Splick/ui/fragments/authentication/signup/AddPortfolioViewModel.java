@@ -13,7 +13,7 @@ import java.io.File;
 public class AddPortfolioViewModel extends ViewModel {
     private MutableLiveData<Register>mutableLiveData=new MutableLiveData<>();
     private MediaRepo mediaRepo;
-    public void addImage(Integer userID, Uri file){
+    public void addImage(Integer userID, String file){
         mediaRepo=MediaRepo.getInstance();
         mutableLiveData=mediaRepo.addMedia(userID,file);
     }

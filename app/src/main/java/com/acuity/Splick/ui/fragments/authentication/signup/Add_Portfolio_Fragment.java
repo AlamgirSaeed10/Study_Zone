@@ -1,10 +1,13 @@
 package com.acuity.Splick.ui.fragments.authentication.signup;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +25,12 @@ import androidx.navigation.Navigation;
 
 import com.acuity.Splick.R;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -158,7 +165,7 @@ public class Add_Portfolio_Fragment extends Fragment {
 
     }
     private void addImage(Uri file){
-     mViewModel.addImage(134,file);
+     mViewModel.addImage(134,getRealPathFromUri(getActivity(),file) );
 
 /*
      mViewModel.getMutableLiveMedia().observe(getViewLifecycleOwner(),register -> {
@@ -170,5 +177,12 @@ public class Add_Portfolio_Fragment extends Fragment {
          }
      });
 */
+    }
+    public static String getRealPathFromUri(Activity activity, Uri contentUri) {
+        String[] proj = { MediaStore.Images.Media.DATA };
+        Cursor cursor = activity.managedQuery(contentUri, proj, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
     }
 }
